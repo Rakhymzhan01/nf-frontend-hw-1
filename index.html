@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+
+        <title>reveal.js</title>
+
+        <link rel="stylesheet" href="dist/reset.css" />
+        <link rel="stylesheet" href="dist/reveal.css" />
+        <link rel="stylesheet" href="dist/theme/black.css" />
+
+        <!-- Theme used for syntax highlighted code -->
+        <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+        <style>
+            .layout-custom {
+                font-size: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h1 style="font-size: 55px">Introduction to Next.js</h1>
+                </section>
+                <section class="layout-custom">
+                    <h2>What is Next.js?</h2>
+                    <ul>
+                        <li>
+                            <strong>Next.js</strong> is a React framework for
+                            building web applications.
+                        </li>
+                        <li>Developed by <strong>Vercel</strong>.</li>
+                        <li>
+                            Enables <strong>server-side rendering</strong> and
+                            <strong>static site generation</strong>.
+                        </li>
+                        <li>
+                            Provides features like <strong>API routes</strong>,
+                            <strong>automatic code splitting</strong>, and
+                            <strong>optimized performance</strong>.
+                        </li>
+                    </ul>
+                </section>
+                <section class="layout-custom">
+                    <h2>SSR vs. SSG in Next.js</h2>
+                    <h3>Server-Side Rendering (SSR)</h3>
+                    <ul>
+                        <li>
+                            Pages are generated
+                            <strong>on each request</strong>.
+                        </li>
+                        <li>Good for <strong>dynamic content</strong>.</li>
+                        <li>
+                            Ensures <strong>up-to-date</strong> data for each
+                            request.
+                        </li>
+                        <li>
+                            Can be slower than SSG due to server processing
+                            time.
+                        </li>
+                    </ul>
+                    <h3>Static Site Generation (SSG)</h3>
+                    <ul>
+                        <li>
+                            Pages are generated <strong>at build time</strong>.
+                        </li>
+                        <li>Suitable for <strong>static content</strong>.</li>
+                        <li>
+                            Provides <strong>fast load times</strong> as pages
+                            are pre-rendered.
+                        </li>
+                        <li>
+                            Can update data by <strong>rebuilding</strong> the
+                            site.
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="layout-custom">
+                    <h2>File Structure in Next.js</h2>
+                    <img src="https://i.imgur.com/hMbt0tq.png" alt="strcture" />
+                </section>
+                <section class="layout-custom">
+                    <h2>Creating Pages in Next.js</h2>
+                    <pre><code data-trim data-noescape>
+                        // app/page.js
+                        export default function Page() {
+                          return <h1>Hello, Next.js!</h1>
+                        }
+                </code></pre>
+                </section>
+                <section class="layout-custom">
+                    <h2>Dynamic route example</h2>
+                    <pre><code data-trim data-noescape>
+                        // app/blog/[slug]/page.tsx
+                        export default function Page({ params }: { params: { slug: string } }) {
+                          return <div>My Post: {params.slug}</div>
+                        }
+                </code></pre>
+                </section>
+                <section>
+                    <section>
+                        <pre style="font-size: 18px">
+                            <code data-trim data-noescape>
+                                const CardTailwind = () => {
+                                    return (
+                                        &lt;div className=&quot;max-w-sm rounded overflow-hidden shadow-lg&quot;&gt;
+                                        &lt;img className=&quot;w-full&quot; src=&quot;https://via.placeholder.com/400&quot; alt=&quot;Card image&quot; /&gt;
+                                        &lt;div className=&quot;px-6 py-4&quot;&gt;
+                                        &lt;div className=&quot;font-bold text-xl mb-2&quot;&gt;Card Title&lt;/div&gt;
+                                        &lt;p className=&quot;text-gray-700 text-base&quot;&gt;
+                                            This is a simple card component styled with Tailwind CSS.
+                                        &lt;/p&gt;
+                                        &lt;/div&gt;
+                                        &lt;div className=&quot;px-6 pt-4 pb-2&quot;&gt;
+                                        &lt;span className=&quot;inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2&quot;&gt;#tag1&lt;/span&gt;
+                                        &lt;span className=&quot;inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2&quot;&gt;#tag2&lt;/span&gt;
+                                        &lt;span className=&quot;inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2&quot;&gt;#tag3&lt;/span&gt;
+                                        &lt;/div&gt;
+                                    &lt;/div&gt;
+                                    );
+                                };
+                                
+                                export default CardTailwind;
+                            </code>
+                        </pre> 
+                    </section>
+                    <section>
+                        <pre style="font-size: 18px">
+                            <code data-trim data-noescape data-line-numbers="1-6|7-9|10-12|31-41">
+                                .card {
+                                    max-width: 24rem;
+                                    border-radius: 0.5rem;
+                                    overflow: hidden;
+                                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                                  }
+                                  
+                                  .card-image {
+                                    width: 100%;
+                                  }
+                                  
+                                  .card-content {
+                                    padding: 1.5rem;
+                                  }
+                                  
+                                  .card-title {
+                                    font-weight: bold;
+                                    font-size: 1.25rem;
+                                    margin-bottom: 0.5rem;
+                                  }
+                                  
+                                  .card-text {
+                                    color: #4a4a4a;
+                                    font-size: 1rem;
+                                  }
+                                  
+                                  .card-tags {
+                                    padding: 0.75rem 1.5rem 1.5rem;
+                                  }
+                                  
+                                  .card-tag {
+                                    display: inline-block;
+                                    background-color: #f7fafc;
+                                    border-radius: 9999px;
+                                    padding: 0.375rem 0.75rem;
+                                    font-size: 0.875rem;
+                                    font-weight: 600;
+                                    color: #4a4a4a;
+                                    margin-right: 0.5rem;
+                                    margin-bottom: 0.5rem;
+                                  }
+                            </code>
+                        </pre> 
+                    </section>
+                </section>
+                <section class="layout-custom">
+                    <h2>Route Handlers</h2>
+                    <p>great feature</p>
+                    <img src="https://i.imgur.com/TWzfRLl.png" alt="strcture" />
+                </section>
+                <section class="layout-custom">
+                    <h2>Code example</h2>
+                    <p>app/products/api/route.ts</p>
+                    <pre><code data-trim data-noescape>
+                        export async function GET(request, { params }) {
+                            //get params id
+                            const id = parseInt(params.id);
+                          
+                            //get detail notes
+                            const note = await prisma.notes.findUnique({
+                              where: {
+                                id,
+                              },
+                            });
+                          
+                            //return response JSON
+                            return Response.json(
+                              {
+                                sucess: true,
+                                message: 'Detail Data Note',
+                                data: note,
+                              },
+                              {
+                                status: 200,
+                              }
+                            );
+                          }
+                        </code>
+                    </pre>
+                </section>
+                <section class="layout-custom">
+                    <h2>Rakhmet</h2>
+                </section>
+            </div>
+        </div>
+
+        <script src="dist/reveal.js"></script>
+        <script src="plugin/notes/notes.js"></script>
+        <script src="plugin/markdown/markdown.js"></script>
+        <script src="plugin/highlight/highlight.js"></script>
+        <script>
+            // More info about initialization & config:
+            // - https://revealjs.com/initialization/
+            // - https://revealjs.com/config/
+            Reveal.initialize({
+                hash: true,
+
+                // Learn about plugins: https://revealjs.com/plugins/
+                plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+            });
+        </script>
+    </body>
+</html>
